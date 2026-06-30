@@ -30,29 +30,3 @@ A hands-on Snowflake lab where participants turn **raw clinical-visit audio** in
 4. **Grade (optional):** run `verify_nl.sql` (or `verify.sql` for the code version).
 
 > Prerequisites: each participant needs their **own Snowflake account**, **ACCOUNTADMIN**, and a region with Cortex AI functions (validated on **AWS us-west-2**; `AI_TRANSCRIBE` + the Claude models must be available).
-
----
-
-## Two prompt versions
-
-| | `prompts.md` (code) | `prompts_nl.md` (natural language) |
-|---|---|---|
-| Prompts | 5, exact SQL | 8, plain English |
-| Model | `claude-sonnet-4-5` | `claude-opus-4-8` |
-| Risk engine | Model + deterministic safety-net floor | Model decides, no override |
-| Sarah Chen | Always **EMERGENT** | Typically **URGENT + missed signal** |
-| Best for | A scripted demo where the EMERGENT beat must land | Showcasing Cortex Code authoring from intent |
-
-Both versions share `setup.sql` and produce the same object names, so an account can run either.
-
----
-
-## If you move or fork this repo
-
-Three things in `setup.sql` are wired to this repo's location, plus one path in the Streamlit prompt. Update them if the owner/name/branch changes:
-
-- `API_ALLOWED_PREFIXES = ('https://github.com/sfc-gh-nekulkarni')`
-- `ORIGIN = 'https://github.com/sfc-gh-nekulkarni/voice-of-patient-lab.git'`
-- the `COPY FILES ... FROM @...LAB_REPO/branches/main/audio/` path (and the matching `streamlit/` path in the Streamlit prompt)
-
-**Path-critical folders:** `audio/` and `streamlit/` must keep their names and locations. All `.md` and `verify*.sql` files are documentation and can be reorganized freely.
