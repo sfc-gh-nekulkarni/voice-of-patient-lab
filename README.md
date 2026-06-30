@@ -10,9 +10,9 @@ A hands-on Snowflake lab where participants turn **raw clinical-visit audio** in
 
 | Path | What it is | What it does |
 |------|-----------|--------------|
-| **`audio/`** | 16 synthetic clinical-visit recordings (`.mp3`), named `V###_P###_Name.mp3` | The lab's raw input. `setup.sql` copies these from this repo into a Snowflake stage; participants transcribe them in Prompt/Challenge 2. **Path-critical — do not rename or move.** |
-| **`streamlit/streamlit_app.py`** | The clinician worklist Streamlit-in-Snowflake app | Deployed by the Streamlit prompt: risk-ranked worklist, Sarah Chen's timeline, and a follow-up write-back button. **Path-critical — do not rename or move.** |
-| **`setup.sql`** | One-time setup script (run as ACCOUNTADMIN) | Creates the warehouse, database, schema, and SSE stage; loads the 8 source tables; and pulls the 16 MP3s from this repo into the stage via a Git integration. Run once, top to bottom. Builds **only the foundation** — not the AI objects. |
+| **`audio/`** | 16 synthetic clinical-visit recordings (`.mp3`), named `V###_P###_Name.mp3` | The lab's raw input. `setup.sql` copies these from this repo into a Snowflake stage; participants transcribe them in Prompt/Challenge 2. |
+| **`streamlit/streamlit_app.py`** | The clinician worklist Streamlit-in-Snowflake app | Deployed by the Streamlit prompt: risk-ranked worklist, Sarah Chen's timeline, and a follow-up write-back button. |
+| **`setup.sql`** | One-time setup script (run as ACCOUNTADMIN) | Creates the warehouse, database, schema, and SSE stage; loads the 8 source tables; and pulls the 16 MP3s from this repo into the stage via a Git integration. Run once. |
 | **`prompts.md`** | The **code version** — 5 prescriptive prompts containing exact SQL | For a scripted demo. Includes a deterministic safety net. |
 | **`prompts.md`** | The **natural-language version** — 8 plain-English prompts | The primary participant track. Cortex Code authors the SQL from intent. |
 | **`verify.sql`** | Acceptance checks for the **code version** | 11 data assertions (incl. Sarah = EMERGENT and the 1/5/10 tiers) + 4 object-existence checks. Every row should read `PASS`. |
