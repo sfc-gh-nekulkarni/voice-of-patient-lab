@@ -8,11 +8,26 @@ A hands-on Snowflake lab where participants turn **raw clinical-visit audio** in
 
 | File | Audience | Purpose |
 |------|----------|---------|
-| `setup.sql` | **Instructor / each participant (once)** | Provisions DB, warehouse, stage, structured tables, and pulls the 16 MP3s from GitHub into the stage. Run once, top to bottom. |
-| `prompts.md` | **Participants** | The 5 tight, copy-paste prompts (in order) with what/why/best-practice notes. |
-| `verify.sql` | **Instructor** | Acceptance gate — 11 data checks (all must read PASS) + 4 object-existence checks. |
-| `streamlit_app.py` | reference | The worklist app Prompt 5 deploys (hosted in the repo's `streamlit/` folder). |
+| `setup.sql` | **Instructor / each participant (once)** | Provisions DB, warehouse, stage, structured tables, and pulls the 16 MP3s from GitHub into the stage. Run once, top to bottom. **Shared by both prompt versions.** |
+| `prompts.md` | **Participants (code version)** | The **5 tight, code-first** prompts. Guarantees the full story including **Sarah = EMERGENT** via a deterministic safety net. |
+| `prompts_nl.md` | **Participants (natural-language version)** | The **8 plain-English** prompts. Cortex Code authors the SQL from intent; the AI judges risk freely (**no override** — Sarah typically lands URGENT). |
+| `verify.sql` | **Instructor (code version)** | Acceptance gate — 11 data checks (incl. Sarah=EMERGENT, 1/5/10 tiers) + 4 object checks. |
+| `verify_nl.sql` | **Instructor (NL version)** | Structural acceptance — 8 checks (counts, valid enum, no nulls, search match, objects). Does **not** pin risk tiers. |
+| `streamlit_app.py` | reference | The worklist app the Streamlit prompt deploys (hosted in the repo's `streamlit/` folder). |
 | `audio/` (in GitHub repo) | reference | The 16 synthetic clinical-visit MP3s. |
+
+### Two prompt versions — pick one
+
+| | `prompts.md` (code) | `prompts_nl.md` (natural language) |
+|---|---|---|
+| **Prompts** | 5, contain exact SQL | 8, plain English (Cortex Code writes the SQL) |
+| **Model** | `claude-sonnet-4-5` | `claude-opus-4-8` |
+| **Risk engine** | Model judges + **deterministic safety-net floor** | Model judges, **no override** |
+| **Sarah Chen** | Always **EMERGENT** (guaranteed) | Typically **URGENT + missed signal** (model's call) |
+| **Guarantee** | Zero-touch, first-try, story always lands | Generated code runs clean; risk tiers reflect the model |
+| **Best for** | A scripted demo where the EMERGENT beat must land | Showcasing Cortex Code authoring from intent |
+
+Both versions use the same `setup.sql` and produce the same object names, so an account can run either (or one then the other — every build statement is `CREATE OR REPLACE`).
 
 > **GitHub repo (audio + app):** `https://github.com/sfc-gh-nekulkarni/voice-of-patient-lab`
 > ⚠️ This is a **test repo under a personal Snowflake GitHub identity**. Before the event, move/fork it to the official org and update the two references in `setup.sql` (`API_ALLOWED_PREFIXES` and the `ORIGIN` URL) and the FETCH/COPY paths used by Prompt 5.
