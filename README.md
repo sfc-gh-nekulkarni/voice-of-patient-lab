@@ -1,4 +1,4 @@
-# Voice of the Patient: Dev Day HCLS AI Lab
+# Voice of the Patient: Developer Lab
 
 A hands-on Snowflake lab where participants turn **raw clinical-visit audio** into an AI pipeline that catches a missed cancer signal: using `AI_TRANSCRIBE`, Cortex AISQL functions, a semantic view, Cortex Search, a Cortex Agent, and a Streamlit app. Participants build it by pasting prompts into **Cortex Code in Snowsight**.
 
